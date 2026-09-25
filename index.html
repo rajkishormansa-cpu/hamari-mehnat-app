@@ -1,209 +1,543 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HMAB - Hamari Mehnat, Aapka Bharosa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<title>HMAB - Hamari Mehnat</title>
 
-    body {
-      background: #f5f7fa;
-      color: #172033;
-      min-height: 100vh;
-    }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
 
-    .app {
-      max-width: 430px;
-      min-height: 100vh;
-      margin: auto;
-      background: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.08);
-    }
+body{
+    background:#f5f6f8;
+    color:#172033;
+}
 
-    .header {
-      background: #102a43;
-      color: white;
-      padding: 45px 25px 35px;
-      text-align: center;
-      border-radius: 0 0 30px 30px;
-    }
+.app{
+    max-width:430px;
+    margin:auto;
+    background:white;
+    min-height:100vh;
+}
 
-    .logo {
-      width: 85px;
-      height: 85px;
-      margin: auto;
-      background: #ff8c00;
-      color: white;
-      border-radius: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 27px;
-      font-weight: bold;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
+.header{
+    background:#12304a;
+    color:white;
+    text-align:center;
+    padding:45px 20px 55px;
+    border-radius:0 0 55px 55px;
+}
 
-    .header h1 {
-      margin-top: 18px;
-      font-size: 25px;
-    }
+.logo{
+    width:160px;
+    height:160px;
+    background:#ff8a00;
+    border-radius:45px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    font-weight:bold;
+}
 
-    .header h1 span {
-      color: #ff8c00;
-    }
+.brand{
+    font-size:42px;
+    font-weight:bold;
+    margin-top:32px;
+}
 
-    .tagline {
-      margin-top: 10px;
-      font-size: 14px;
-      opacity: 0.9;
-    }
+.brand span{
+    color:#ff8a00;
+}
 
-    .content {
-      padding: 30px 22px;
-    }
+.tagline{
+    font-size:24px;
+    margin-top:15px;
+}
 
-    .welcome {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+.subtag{
+    font-size:18px;
+    margin-top:22px;
+}
 
-    .welcome h2 {
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
+.content{
+    padding:45px 22px;
+}
 
-    .welcome p {
-      color: #667085;
-      font-size: 14px;
-    }
+.welcome{
+    text-align:center;
+    margin-bottom:35px;
+}
 
-    .role-card {
-      border: 1px solid #e4e7ec;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 16px;
-      cursor: pointer;
-      transition: 0.2s;
-      background: white;
-    }
+.welcome h2{
+    font-size:30px;
+}
 
-    .role-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
+.welcome p{
+    color:#687386;
+    font-size:18px;
+    margin-top:10px;
+}
 
-    .icon {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
+.card{
+    border:1px solid #ddd;
+    border-radius:30px;
+    padding:30px 25px;
+    margin-bottom:25px;
+    background:white;
+    cursor:pointer;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
 
-    .role-card h3 {
-      font-size: 19px;
-      margin-bottom: 5px;
-    }
+.customer{
+    border-left:8px solid #ff8a00;
+}
 
-    .role-card p {
-      color: #667085;
-      font-size: 13px;
-      line-height: 1.5;
-    }
+.worker{
+    border-left:8px solid #12304a;
+}
 
-    .customer {
-      border-left: 5px solid #ff8c00;
-    }
+.icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
 
-    .worker {
-      border-left: 5px solid #102a43;
-    }
+.card h3{
+    font-size:25px;
+    margin-bottom:12px;
+}
 
-    .language {
-      text-align: center;
-      margin-top: 25px;
-      color: #667085;
-      font-size: 12px;
-    }
+.card p{
+    color:#687386;
+    font-size:17px;
+    line-height:1.5;
+}
 
-    .footer {
-      text-align: center;
-      padding: 15px;
-      color: #98a2b3;
-      font-size: 11px;
-    }
-  </style>
+.page{
+    display:none;
+    padding:25px 20px 40px;
+}
+
+.page.active{
+    display:block;
+}
+
+.back{
+    border:none;
+    background:none;
+    color:#12304a;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-bottom:25px;
+}
+
+.page h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.page .intro{
+    color:#687386;
+    margin-bottom:25px;
+    line-height:1.5;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccd1d8;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.submit{
+    width:100%;
+    border:none;
+    background:#ff8a00;
+    color:white;
+    padding:16px;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.success{
+    display:none;
+    text-align:center;
+    padding:30px 10px;
+}
+
+.success .big{
+    font-size:65px;
+}
+
+.success h2{
+    margin:15px 0;
+}
+
+.home-btn{
+    border:none;
+    background:#12304a;
+    color:white;
+    padding:14px 25px;
+    border-radius:12px;
+    font-size:16px;
+    margin-top:20px;
+}
+
+.footer{
+    text-align:center;
+    color:#888;
+    padding:20px;
+    font-size:14px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
+
+<!-- HOME PAGE -->
+<div id="homePage">
 
     <div class="header">
-      <div class="logo">HMAB</div>
 
-      <h1>HAMARI <span>MEHNAT</span></h1>
+        <div class="logo">HMAB</div>
 
-      <div class="tagline">
-        AAPKA BHAROSA
-      </div>
+        <div class="brand">
+            HAMARI <span>MEHNAT</span>
+        </div>
 
-      <p class="tagline">
-        Sahi Mistri, Sahi Labour — Bharose ke Saath
-      </p>
+        <div class="tagline">
+            AAPKA BHAROSA
+        </div>
+
+        <div class="subtag">
+            Sahi Mistri, Sahi Labour — Bharose ke Saath
+        </div>
+
     </div>
 
     <div class="content">
 
-      <div class="welcome">
-        <h2>Namaste! 👋</h2>
-        <p>Welcome / स्वागत है</p>
-        <p>Aap kaun hain?</p>
-      </div>
+        <div class="welcome">
+            <h2>Namaste! 👋</h2>
+            <p>Welcome / स्वागत है</p>
+            <p>Aap kaun hain?</p>
+        </div>
 
-      <div class="role-card customer" onclick="customer()">
-        <div class="icon">🏠</div>
-        <h3>Customer (ग्राहक)</h3>
-        <p>
-          Ghar banane, repair ya renovation ke liye
-          trusted Mistri aur Labour dhoondhein.
-        </p>
-      </div>
+        <div class="card customer" onclick="showPage('customerPage')">
 
-      <div class="role-card worker" onclick="worker()">
-        <div class="icon">👷</div>
-        <h3>Mistri / Labour</h3>
-        <p>
-          Apna profile banayein aur nearby
-          construction jobs paayein.
-        </p>
-      </div>
+            <div class="icon">🏠</div>
 
-      <div class="language">
-        हिन्दी + English
-      </div>
+            <h3>Customer (ग्राहक)</h3>
+
+            <p>
+                Ghar banane, repair ya renovation ke liye
+                trusted Mistri aur Labour dhoondhein.
+            </p>
+
+        </div>
+
+        <div class="card worker" onclick="showPage('workerPage')">
+
+            <div class="icon">👷</div>
+
+            <h3>Mistri / Labour</h3>
+
+            <p>
+                Apna profile banayein aur nearby
+                construction jobs paayein.
+            </p>
+
+        </div>
 
     </div>
 
     <div class="footer">
-      © 2026 HMAB • Hamari Mehnat, Aapka Bharosa
+        © 2026 HMAB - Hamari Mehnat, Aapka Bharosa
     </div>
 
-  </div>
+</div>
 
-  <script>
-    function customer() {
-      alert("Customer section — Coming next!");
+
+<!-- CUSTOMER PAGE -->
+<div id="customerPage" class="page">
+
+    <button class="back" onclick="showPage('homePage')">
+        ← Back / वापस
+    </button>
+
+    <h2>🏠 Kaam ki Requirement</h2>
+
+    <p class="intro">
+        Apni requirement bhariye. Hum aapko nearby
+        Mistri aur Labour se connect karne mein madad karenge.
+    </p>
+
+    <form onsubmit="submitCustomer(event)">
+
+        <div class="form-group">
+            <label>Kaam kis type ka hai?</label>
+
+            <select required>
+                <option value="">Select karein</option>
+                <option>New House Construction</option>
+                <option>Repair</option>
+                <option>Renovation</option>
+                <option>Painting</option>
+                <option>Plaster Work</option>
+                <option>Tiles Work</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Location / जगह</label>
+
+            <input
+                type="text"
+                placeholder="Jaise: Gaya, Bihar"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Kitne Mistri / Labour chahiye?</label>
+
+            <input
+                type="number"
+                min="1"
+                placeholder="Jaise: 5"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Kaam kab shuru karna hai?</label>
+
+            <input
+                type="date"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+
+            <input
+                type="tel"
+                placeholder="10 digit mobile number"
+                pattern="[0-9]{10}"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Kaam ki details</label>
+
+            <textarea
+                placeholder="Apne kaam ke baare mein batayein..."
+                required></textarea>
+        </div>
+
+        <button class="submit" type="submit">
+            Requirement Submit Karein
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- WORKER PAGE -->
+<div id="workerPage" class="page">
+
+    <button class="back" onclick="showPage('homePage')">
+        ← Back / वापस
+    </button>
+
+    <h2>👷 Worker Profile</h2>
+
+    <p class="intro">
+        Apni basic details bhariye. Isse customers aapko
+        construction work ke liye contact kar sakenge.
+    </p>
+
+    <form onsubmit="submitWorker(event)">
+
+        <div class="form-group">
+            <label>Naam / Name</label>
+
+            <input
+                type="text"
+                placeholder="Apna naam"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+
+            <input
+                type="tel"
+                placeholder="10 digit mobile number"
+                pattern="[0-9]{10}"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Aapka kaam / Skill</label>
+
+            <select required>
+                <option value="">Select karein</option>
+                <option>Raj Mistri</option>
+                <option>Labour</option>
+                <option>Painter</option>
+                <option>Plumber</option>
+                <option>Electrician</option>
+                <option>Tiles Mistri</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Experience / अनुभव</label>
+
+            <input
+                type="number"
+                min="0"
+                placeholder="Kitne saal ka experience?"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Kaam ka Area / Location</label>
+
+            <input
+                type="text"
+                placeholder="Jaise: Gaya"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Team mein kitne log hain?</label>
+
+            <input
+                type="number"
+                min="1"
+                placeholder="Jaise: 6"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Apne baare mein</label>
+
+            <textarea
+                placeholder="Apne kaam aur experience ke baare mein batayein..."
+                required></textarea>
+        </div>
+
+        <button class="submit" type="submit">
+            Profile Submit Karein
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- SUCCESS PAGE -->
+<div id="successPage" class="page">
+
+    <div class="success" style="display:block">
+
+        <div class="big">✅</div>
+
+        <h2>Thank You!</h2>
+
+        <p>
+            Aapki information successfully submit ho gayi.
+        </p>
+
+        <p>
+            HMAB ka next version nearby workers
+            matching system ke saath connect hoga.
+        </p>
+
+        <button class="home-btn" onclick="showPage('homePage')">
+            Home / मुख्य पेज
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function showPage(pageId){
+
+    document.getElementById("homePage").style.display = "none";
+
+    document.getElementById("customerPage").classList.remove("active");
+    document.getElementById("workerPage").classList.remove("active");
+    document.getElementById("successPage").classList.remove("active");
+
+    if(pageId === "homePage"){
+
+        document.getElementById("homePage").style.display = "block";
+
+    }else{
+
+        document.getElementById(pageId).classList.add("active");
+
     }
 
-    function worker() {
-      alert("Mistri / Labour section — Coming next!");
-    }
-  </script>
+    window.scrollTo(0,0);
+}
+
+
+function submitCustomer(event){
+
+    event.preventDefault();
+
+    showPage("successPage");
+
+}
+
+
+function submitWorker(event){
+
+    event.preventDefault();
+
+    showPage("successPage");
+
+}
+
+</script>
 
 </body>
 </html>
