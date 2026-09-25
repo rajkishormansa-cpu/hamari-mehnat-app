@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HMAB - Hamari Mehnat, Aapka Bharosa</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 430px;
+      min-height: 100vh;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    }
+
+    .header {
+      background: #102a43;
+      color: white;
+      padding: 45px 25px 35px;
+      text-align: center;
+      border-radius: 0 0 30px 30px;
+    }
+
+    .logo {
+      width: 85px;
+      height: 85px;
+      margin: auto;
+      background: #ff8c00;
+      color: white;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .header h1 {
+      margin-top: 18px;
+      font-size: 25px;
+    }
+
+    .header h1 span {
+      color: #ff8c00;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 30px 22px;
+    }
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .welcome h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .role-card {
+      border: 1px solid #e4e7ec;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      background: white;
+    }
+
+    .role-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .role-card h3 {
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .role-card p {
+      color: #667085;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .customer {
+      border-left: 5px solid #ff8c00;
+    }
+
+    .worker {
+      border-left: 5px solid #102a43;
+    }
+
+    .language {
+      text-align: center;
+      margin-top: 25px;
+      color: #667085;
+      font-size: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      color: #98a2b3;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <div class="header">
+      <div class="logo">HMAB</div>
+
+      <h1>HAMARI <span>MEHNAT</span></h1>
+
+      <div class="tagline">
+        AAPKA BHAROSA
+      </div>
+
+      <p class="tagline">
+        Sahi Mistri, Sahi Labour — Bharose ke Saath
+      </p>
+    </div>
+
+    <div class="content">
+
+      <div class="welcome">
+        <h2>Namaste! 👋</h2>
+        <p>Welcome / स्वागत है</p>
+        <p>Aap kaun hain?</p>
+      </div>
+
+      <div class="role-card customer" onclick="customer()">
+        <div class="icon">🏠</div>
+        <h3>Customer (ग्राहक)</h3>
+        <p>
+          Ghar banane, repair ya renovation ke liye
+          trusted Mistri aur Labour dhoondhein.
+        </p>
+      </div>
+
+      <div class="role-card worker" onclick="worker()">
+        <div class="icon">👷</div>
+        <h3>Mistri / Labour</h3>
+        <p>
+          Apna profile banayein aur nearby
+          construction jobs paayein.
+        </p>
+      </div>
+
+      <div class="language">
+        हिन्दी + English
+      </div>
+
+    </div>
+
+    <div class="footer">
+      © 2026 HMAB • Hamari Mehnat, Aapka Bharosa
+    </div>
+
+  </div>
+
+  <script>
+    function customer() {
+      alert("Customer section — Coming next!");
+    }
+
+    function worker() {
+      alert("Mistri / Labour section — Coming next!");
+    }
+  </script>
+
+</body>
+</html>
