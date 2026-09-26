@@ -524,8 +524,26 @@ function submitCustomer(event){
 
     event.preventDefault();
 
-    showPage("successPage");
+    const form = event.target;
 
+    const customerData = {};
+
+    Array.from(form.elements).forEach(function(element){
+
+        if(element.tagName !== "BUTTON"){
+            customerData[element.name || element.type] = element.value;
+        }
+
+    });
+
+    customerData.submittedAt = new Date().toISOString();
+
+    localStorage.setItem(
+        "hmab_customer",
+        JSON.stringify(customerData)
+    );
+
+    showPage("successPage");
 }
 
 
@@ -533,8 +551,26 @@ function submitWorker(event){
 
     event.preventDefault();
 
-    showPage("successPage");
+    const form = event.target;
 
+    const workerData = {};
+
+    Array.from(form.elements).forEach(function(element){
+
+        if(element.tagName !== "BUTTON"){
+            workerData[element.name || element.type] = element.value;
+        }
+
+    });
+
+    workerData.submittedAt = new Date().toISOString();
+
+    localStorage.setItem(
+        "hmab_worker",
+        JSON.stringify(workerData)
+    );
+
+    showPage("successPage");
 }
 
 </script>
