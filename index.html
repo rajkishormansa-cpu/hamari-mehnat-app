@@ -525,18 +525,17 @@ function submitCustomer(event){
     event.preventDefault();
 
     const form = event.target;
+    const fields = form.elements;
 
-    const customerData = {};
-
-    Array.from(form.elements).forEach(function(element){
-
-        if(element.tagName !== "BUTTON"){
-            customerData[element.name || element.type] = element.value;
-        }
-
-    });
-
-    customerData.submittedAt = new Date().toISOString();
+    const customerData = {
+        workType: fields[0].value,
+        location: fields[1].value,
+        workersNeeded: fields[2].value,
+        startDate: fields[3].value,
+        mobile: fields[4].value,
+        workDetails: fields[5].value,
+        submittedAt: new Date().toISOString()
+    };
 
     localStorage.setItem(
         "hmab_customer",
@@ -552,18 +551,18 @@ function submitWorker(event){
     event.preventDefault();
 
     const form = event.target;
+    const fields = form.elements;
 
-    const workerData = {};
-
-    Array.from(form.elements).forEach(function(element){
-
-        if(element.tagName !== "BUTTON"){
-            workerData[element.name || element.type] = element.value;
-        }
-
-    });
-
-    workerData.submittedAt = new Date().toISOString();
+    const workerData = {
+        name: fields[0].value,
+        mobile: fields[1].value,
+        skill: fields[2].value,
+        experience: fields[3].value,
+        location: fields[4].value,
+        teamSize: fields[5].value,
+        about: fields[6].value,
+        submittedAt: new Date().toISOString()
+    };
 
     localStorage.setItem(
         "hmab_worker",
@@ -572,7 +571,6 @@ function submitWorker(event){
 
     showPage("successPage");
 }
-
 </script>
 
 </body>
