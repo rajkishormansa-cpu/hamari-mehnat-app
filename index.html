@@ -570,7 +570,17 @@ function submitWorker(event){
     );
 
     showPage("successPage");
-}
+}function checkSavedData() {
+    const customer = localStorage.getItem("hmab_customer");
+    const worker = localStorage.getItem("hmab_worker");
+
+    alert(
+        "CUSTOMER DATA:\n" +
+        (customer || "No customer data") +
+        "\n\nWORKER DATA:\n" +
+        (worker || "No worker data")
+    );
+    }
 </script>
 
 </body>
