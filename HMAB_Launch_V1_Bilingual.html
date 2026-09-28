@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HMAB - <span class="lang-en">Hamari Mehnat, Aapka Bharosa</span><span class="lang-hi">हमारी मेहनत, आपका भरोसा</span></title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#0b5ed7;color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+.logo{font-size:20px;font-weight:800}.container{max-width:1000px;margin:auto;padding:18px}
+.card{background:#fff;border-radius:14px;padding:18px;margin:14px 0;box-shadow:0 3px 14px #00000012}
+h1,h2,h3{margin-top:0}.hero{text-align:center;padding:35px 12px}
+.btn{border:0;border-radius:9px;padding:11px 16px;background:#0b5ed7;color:#fff;font-weight:700;cursor:pointer;margin:4px}
+.btn.secondary{background:#eef3fb;color:#17447d}.btn.danger{background:#dc3545}
+input,select,textarea{width:100%;padding:11px;margin:6px 0 12px;border:1px solid #ccd5e2;border-radius:8px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.hidden{display:none!important}.tag{display:inline-block;padding:5px 9px;border-radius:20px;background:#e8f1ff;color:#0b5ed7;font-size:12px;font-weight:700}
+.notice{padding:12px;border-radius:9px;background:#fff3cd;color:#664d03;margin:10px 0}
+.success{background:#d1e7dd;color:#0f5132}.muted{color:#667085;font-size:13px}
+nav button{background:transparent;border:0;color:#fff;font-weight:700;cursor:pointer;margin-left:8px}
+.item{border:1px solid #e0e6ef;border-radius:10px;padding:13px;margin:9px 0}
+footer{text-align:center;padding:30px;color:#667085}
+.lang-hi{display:none}.lang-en{display:inline}.bi-block{display:block}\n</style>
+</head>
+<body>
+<header>
+  <div class="logo">HMAB</div>
+  <div><button class="btn secondary" id="langBtn" onclick="toggleLang()" style="margin:0 6px 0 0">हिंदी</button><nav id="nav" style="display:inline"></nav></div>
+</header>
+
+<main class="container">
+<section id="home">
+  <div class="card hero">
+    <h1><span class="lang-en">Hamari Mehnat, Aapka Bharosa</span><span class="lang-hi">हमारी मेहनत, आपका भरोसा</span></h1>
+    <p><span class="lang-en">Connect customers with trusted labour/mistri — with privacy and approval.</span><span class="lang-hi">ग्राहक को भरोसेमंद लेबर/मिस्त्री से जोड़ना — पूरी प्राइवेसी और अप्रूवल के साथ।</span></p>
+    <button class="btn" onclick="show('auth')"><span class="lang-en">Login / Register</span><span class="lang-hi">लॉगिन / रजिस्टर</span></button>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>👷 <span class="lang-en">Workers & Mistri</span><span class="lang-hi">लेबर और मिस्त्री</span></h3><p>Skill, experience aur area ke basis par profile.</p></div>
+    <div class="card"><h3>🏠 <span class="lang-en">Customers</span><span class="lang-hi">ग्राहक</span></h3><p>Apna work requirement post karein.</p></div>
+    <div class="card"><h3>🔒 <span class="lang-en">Privacy</span><span class="lang-hi">प्राइवेसी</span></h3><p>Contact details approval/payment se pehle hidden.</p></div>
+  </div>
+</section>
+
+<section id="auth" class="hidden">
+ <div class="card">
+  <h2><span class="lang-en">Login / Register</span><span class="lang-hi">लॉगिन / रजिस्टर</span></h2>
+  <label>Role</label><select id="role"><option value="customer">Customer</option><option value="worker">Worker / Mistri</option></select>
+  <input id="name" placeholder="Name">
+  <input id="phone" placeholder="Mobile number">
+  <input id="password" type="password" placeholder="Password">
+  <button class="btn" onclick="auth()">Continue</button>
+  <button class="btn secondary" onclick="show('home')">Back</button>
+  <p id="authMsg" class="muted"></p>
+ </div>
+</section>
+
+<section id="customer" class="hidden">
+ <div class="card"><h2><span class="lang-en">Customer Dashboard</span><span class="lang-hi">ग्राहक डैशबोर्ड</span></h2><p id="customerWelcome"></p>
+   <button class="btn" onclick="show('post')">+ <span class="lang-en">Post Work</span><span class="lang-hi">काम पोस्ट करें</span></button>
+   <button class="btn secondary" onclick="show('matches')"><span class="lang-en">Find Workers</span><span class="lang-hi">लेबर/मिस्त्री खोजें</span></button>
+ </div>
+ <div class="card"><h3><span class="lang-en">My Work Requests</span><span class="lang-hi">मेरे काम की रिक्वेस्ट</span></h3><div id="customerJobs"></div></div>
+</section>
+
+<section id="post" class="hidden">
+ <div class="card"><h2><span class="lang-en">Post Work</span><span class="lang-hi">काम पोस्ट करें</span></h2>
+  <input id="workType" placeholder="Work type e.g. Mason, Electrician">
+  <input id="location" placeholder="Area / locality (exact address not required here)">
+  <input id="workersNeeded" type="number" min="1" placeholder="Workers needed">
+  <input id="startDate" type="date">
+  <textarea id="workDetails" placeholder="Work details"></textarea>
+  <button class="btn" onclick="postJob()">Post Requirement</button>
+  <button class="btn secondary" onclick="dashboard()">Back</button>
+ </div>
+</section>
+
+<section id="matches" class="hidden">
+ <div class="card"><h2><span class="lang-en">Available Workers</span><span class="lang-hi">उपलब्ध लेबर/मिस्त्री</span></h2><p class="notice">Worker ka mobile number ₹10 unlock payment se pehle hidden rahega.</p><div id="workerList"></div></div>
+</section>
+
+<section id="worker" class="hidden">
+ <div class="card"><h2><span class="lang-en">Worker / Mistri Dashboard</span><span class="lang-hi">लेबर / मिस्त्री डैशबोर्ड</span></h2><p id="workerWelcome"></p>
+   <button class="btn" onclick="show('profile')"><span class="lang-en">My Profile</span><span class="lang-hi">मेरी प्रोफाइल</span></button>
+   <button class="btn secondary" onclick="show('requests')"><span class="lang-en">Customer Requests</span><span class="lang-hi">ग्राहक की रिक्वेस्ट</span></button>
+ </div>
+ <div class="card"><h3><span class="lang-en">My Applications</span><span class="lang-hi">मेरी एप्लीकेशन</span></h3><div id="workerApplications"></div></div>
+</section>
+
+<section id="profile" class="hidden">
+ <div class="card"><h2><span class="lang-en">Worker Profile</span><span class="lang-hi">लेबर/मिस्त्री प्रोफाइल</span></h2>
+  <input id="skill" placeholder="Skill e.g. Mason / Carpenter / Electrician">
+  <input id="experience" placeholder="Experience (years)">
+  <input id="workerLocation" placeholder="Work area">
+  <input id="teamSize" type="number" min="1" placeholder="Team size">
+  <textarea id="about" placeholder="About your work"></textarea>
+  <button class="btn" onclick="saveProfile()">Save Profile</button>
+  <button class="btn secondary" onclick="dashboard()">Back</button>
+ </div>
+</section>
+
+<section id="requests" class="hidden">
+ <div class="card"><h2><span class="lang-en">Customer Work Requests</span><span class="lang-hi">ग्राहक के काम की रिक्वेस्ट</span></h2>
+ <p class="notice">Customer ka mobile number aur exact location admin approval se pehle hidden rahega.</p>
+ <div id="jobList"></div></div>
+</section>
+
+<section id="payment" class="hidden">
+ <div class="card"><h2>🔓 <span class="lang-en">Contact Unlock</span><span class="lang-hi">कॉन्टैक्ट नंबर अनलॉक</span></h2>
+  <p>Worker ka mobile number dekhne ke liye <b>₹10</b> unlock fee required hai.</p>
+  <div class="notice">Abhi payment gateway connected nahi hai. Yeh screen final payment flow ke liye ready placeholder hai.</div>
+  <button class="btn" onclick="unlockDemo()">Mark ₹10 Unlock (Testing Only)</button>
+  <button class="btn secondary" onclick="show('matches')">Cancel</button>
+ </div>
+</section>
+
+<section id="admin" class="hidden">
+ <div class="card"><h2><span class="lang-en">Admin Panel</span><span class="lang-hi">एडमिन पैनल</span></h2><p class="notice">Admin approval ke bina worker ko customer ka phone/exact location nahi milega.</p>
+ <div id="adminData"></div></div>
+</section>
+</main>
+
+<footer>HMAB © 2026 — <span class="lang-en">Privacy</span><span class="lang-hi">प्राइवेसी</span>-first worker/customer marketplace</footer>
+
+<script>
+
+const placeholderPairs={
+ name:['Name / नाम','Name / नाम'],phone:['Mobile number / मोबाइल नंबर','Mobile number / मोबाइल नंबर'],
+ password:['Password / पासवर्ड','Password / पासवर्ड'],
+ workType:['Work type e.g. Mason / काम का प्रकार जैसे मिस्त्री','Work type e.g. Mason / काम का प्रकार जैसे मिस्त्री'],
+ location:['Area / locality / क्षेत्र / मोहल्ला','Area / locality / क्षेत्र / मोहल्ला'],
+ workersNeeded:['Workers needed / कितने मजदूर चाहिए','Workers needed / कितने मजदूर चाहिए'],
+ startDate:['Start date / शुरू करने की तारीख','Start date / शुरू करने की तारीख'],
+ workDetails:['Work details / काम की जानकारी','Work details / काम की जानकारी'],
+ skill:['Skill e.g. Mason / हुनर जैसे मिस्त्री','Skill e.g. Mason / हुनर जैसे मिस्त्री'],
+ experience:['Experience (years) / अनुभव (वर्ष)','Experience (years) / अनुभव (वर्ष)'],
+ workerLocation:['Work area / काम का क्षेत्र','Work area / काम का क्षेत्र'],
+ teamSize:['Team size / टीम में कितने लोग','Team size / टीम में कितने लोग'],
+ about:['About your work / अपने काम के बारे में','About your work / अपने काम के बारे में']
+};
+const K={users:'hmab_users_v2',jobs:'hmab_jobs_v2',profiles:'hmab_profiles_v2',apps:'hmab_apps_v2',unlocks:'hmab_unlocks_v2',current:'hmab_current_v2'};
+const read=k=>JSON.parse(localStorage.getItem(k)||'[]');
+const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+let unlockJob=null;
+
+function current(){return JSON.parse(localStorage.getItem(K.current)||'null')}
+function setCurrent(u){localStorage.setItem(K.current,JSON.stringify(u))}
+function show(id){
+ document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden'); updateNav();
+ if(id==='customer'||id==='worker') dashboard();
+ if(id==='matches') renderWorkers();
+ if(id==='requests') renderJobs();
+ if(id==='admin') renderAdmin();
+}
+function updateNav(){
+ let u=current(), n=document.getElementById('nav');
+ n.innerHTML=u?`<span>${esc(u.name)}</span> <button onclick="dashboard()">Dashboard</button> <button onclick="logout()">Logout</button>`:`<button onclick="show('auth')">Login</button>`;
+}
+function auth(){
+ let role=document.getElementById('role').value,name=document.getElementById('name').value.trim(),phone=document.getElementById('phone').value.trim(),pass=document.getElementById('password').value;
+ if(!name||!phone||!pass)return msg('Please fill all fields.');
+ let users=read(K.users),u=users.find(x=>x.phone===phone&&x.role===role);
+ if(u){
+   if(u.password!==pass)return msg('Wrong password.');
+ }else{
+   u={id:uid(),role,name,phone,password:pass,createdAt:new Date().toISOString()};
+   users.push(u);write(K.users,users);
+ }
+ setCurrent(u); dashboard();
+}
+function msg(t){document.getElementById('authMsg').textContent=t}
+function dashboard(){
+ let u=current(); if(!u){show('auth');return}
+ if(u.role==='admin'){show('admin');return}
+ show(u.role==='customer'?'customer':'worker');
+ if(u.role==='customer'){document.getElementById('customerWelcome').textContent='Welcome, '+u.name;renderCustomerJobs()}
+ else{document.getElementById('workerWelcome').textContent='Welcome, '+u.name;renderApplications()}
+}
+function postJob(){
+ let u=current();if(!u)return;
+ let j={id:uid(),customerId:u.id,workType:v('workType'),location:v('location'),workersNeeded:v('workersNeeded'),startDate:v('startDate'),details:v('workDetails'),status:'open',createdAt:new Date().toISOString()};
+ if(!j.workType||!j.location)return alert('Work type aur location bhariye.');
+ let jobs=read(K.jobs);jobs.push(j);write(K.jobs,jobs);alert('Work requirement posted.');dashboard();
+}
+function saveProfile(){
+ let u=current();if(!u)return;
+ let p={id:u.id,name:u.name,phone:u.phone,skill:v('skill'),experience:v('experience'),location:v('workerLocation'),teamSize:v('teamSize'),about:v('about')};
+ let ps=read(K.profiles).filter(x=>x.id!==u.id);ps.push(p);write(K.profiles,ps);alert('Profile saved.');dashboard();
+}
+function renderWorkers(){
+ let ps=read(K.profiles),box=document.getElementById('workerList');
+ if(!ps.length){box.innerHTML='<p>No worker profiles yet.</p>';return}
+ box.innerHTML=ps.map(p=>`<div class="item"><b>${esc(p.name)}</b> <span class="tag">${esc(p.skill||'Worker')}</span><br>Experience: ${esc(p.experience||'-')} years<br>Area: ${esc(p.location||'-')}<br>Team: ${esc(p.teamSize||'1')}<br><span class="muted">Mobile: 🔒 Hidden — ₹10 unlock required</span><br><button class="btn" onclick="startUnlock('${p.id}')">Unlock Number ₹10</button></div>`).join('');
+}
+function startUnlock(workerId){unlockJob=workerId;show('payment')}
+function unlockDemo(){
+ if(!unlockJob)return;
+ let u=current(),a=read(K.unlocks);
+ if(!a.some(x=>x.customerId===u.id&&x.workerId===unlockJob))a.push({id:uid(),customerId:u.id,workerId:unlockJob,amount:10,status:'TEST_ONLY',createdAt:new Date().toISOString()});
+ write(K.unlocks,a);alert('Testing unlock recorded. Real payment will replace this step.');show('matches');
+}
+function renderJobs(){
+ let jobs=read(K.jobs),box=document.getElementById('jobList');
+ if(!jobs.length){box.innerHTML='<p>No open requests.</p>';return}
+ box.innerHTML=jobs.filter(j=>j.status==='open').map(j=>`<div class="item"><b>${esc(j.workType)}</b> — ${esc(j.location)}<br>Workers: ${esc(j.workersNeeded)} | Start: ${esc(j.startDate||'-')}<br>${esc(j.details||'')}<br><span class="muted">Customer contact: 🔒 Hidden until admin approval</span><br><button class="btn" onclick="apply('${j.id}')">Apply</button></div>`).join('');
+}
+function apply(jobId){
+ let u=current(),apps=read(K.apps);
+ if(apps.some(a=>a.jobId===jobId&&a.workerId===u.id))return alert('Already applied.');
+ apps.push({id:uid(),jobId,workerId:u.id,status:'pending',createdAt:new Date().toISOString()});write(K.apps,apps);alert('Application sent. Admin approval required.');dashboard();
+}
+function renderCustomerJobs(){
+ let u=current(),jobs=read(K.jobs).filter(j=>j.customerId===u.id),box=document.getElementById('customerJobs');
+ box.innerHTML=jobs.length?jobs.map(j=>`<div class="item"><b>${esc(j.workType)}</b> — ${esc(j.location)}<br>Status: ${j.status}<br>${esc(j.details||'')}</div>`).join(''):'<p>No work posted yet.</p>';
+}
+function renderApplications(){
+ let u=current(),apps=read(K.apps).filter(a=>a.workerId===u.id),jobs=read(K.jobs),box=document.getElementById('workerApplications');
+ box.innerHTML=apps.length?apps.map(a=>{let j=jobs.find(x=>x.id===a.jobId);return `<div class="item">${j?esc(j.workType):'Job'} — ${j?esc(j.location):''}<br>Approval: <b>${esc(a.status)}</b></div>`}).join(''):'<p>No applications yet.</p>';
+}
+function renderAdmin(){
+ let users=read(K.users),jobs=read(K.jobs),apps=read(K.apps),box=document.getElementById('adminData');
+ box.innerHTML=`<p>Users: ${users.length} | Jobs: ${jobs.length} | Applications: ${apps.length}</p>`+
+ apps.map(a=>`<div class="item">Application: ${esc(a.id)}<br>Status: ${esc(a.status)}<br><button class="btn" onclick="approve('${a.id}')">Approve</button><button class="btn danger" onclick="reject('${a.id}')">Reject</button></div>`).join('');
+}
+function approve(id){let a=read(K.apps),x=a.find(z=>z.id===id);if(x)x.status='approved';write(K.apps,a);renderAdmin();alert('Approved.');}
+function reject(id){let a=read(K.apps),x=a.find(z=>z.id===id);if(x)x.status='rejected';write(K.apps,a);renderAdmin();}
+function logout(){localStorage.removeItem(K.current);show('home')}
+function v(id){return document.getElementById(id).value.trim()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+
+let hmabLang = localStorage.getItem('hmab_lang') || 'hi';
+function applyLang(){
+  document.querySelectorAll('.lang-en').forEach(x=>x.style.display=hmabLang==='en'?'inline':'none');
+  document.querySelectorAll('.lang-hi').forEach(x=>x.style.display=hmabLang==='hi'?'inline':'none');
+  const b=document.getElementById('langBtn');
+  if(b) b.textContent=hmabLang==='hi'?'English':'हिंदी';
+  localStorage.setItem('hmab_lang',hmabLang);
+}
+function toggleLang(){hmabLang=hmabLang==='hi'?'en':'hi';applyLang();}
+updateNav();applyLang();show('home');
+</script>
+</body>
+</html>
