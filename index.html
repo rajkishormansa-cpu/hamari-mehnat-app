@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+kitna<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <title>HMAB - Hamari Mehnat</title>
 
 <style>
-*{
+{
     box-sizing:border-box;
     margin:0;
     padding:0;
@@ -570,18 +570,5 @@ function submitWorker(event){
     );
 
     showPage("successPage");
-}function checkSavedData() {
-    const customer = localStorage.getItem("hmab_customer");
-    const worker = localStorage.getItem("hmab_worker");
-
-    alert(
-        "CUSTOMER DATA:\n" +
-        (customer || "No customer data") +
-        "\n\nWORKER DATA:\n" +
-        (worker || "No worker data")
-    );
-    }
-</script>
-<button onclick="checkSavedData()">Check Saved Data</button>
 </body>
 </html>
