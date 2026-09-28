@@ -1,4 +1,4 @@
-kitna<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -536,11 +536,7 @@ function submitCustomer(event){
         workDetails: fields[5].value,
         submittedAt: new Date().toISOString()
     };
-
-    localStorage.setItem(
-        "hmab_customer",
-        JSON.stringify(customerData)
-    );
+saveRecord("hmab_customer", customerData);
 
     showPage("successPage");
 }
